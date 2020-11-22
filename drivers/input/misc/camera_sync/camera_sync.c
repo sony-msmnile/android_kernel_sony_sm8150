@@ -442,7 +442,11 @@ static void __exit camera_sync_remove(void)
 	misc_deregister(&camera_sync_dev);
 }
 
+#ifdef MODULE
 module_init(camera_sync_init);
 module_exit(camera_sync_remove);
+#else
+late_initcall(camera_sync_init);
+#endif
 
 MODULE_LICENSE("GPL v2");
