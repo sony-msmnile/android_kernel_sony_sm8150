@@ -72,8 +72,12 @@ static void flash_led_exit(void)
 	led_classdev_unregister(&led_cdev);
 }
 
+#ifdef MODULE
 module_init(flash_led_init);
 module_exit(flash_led_exit);
+#else
+late_initcall(flash_led_init);
+#endif
 
 MODULE_DESCRIPTION("flash led driver");
 MODULE_LICENSE("GPL v2");
