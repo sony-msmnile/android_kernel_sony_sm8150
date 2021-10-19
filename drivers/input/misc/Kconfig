@@ -364,6 +364,10 @@ config ET580_USE_TIMER_SETUP
 	depends on ARCH_SONY_KUMANO
 	default n
 
+config INPUT_BU520X1NVX
+	bool "BU520X1NVX hall sensor driver"
+	default n
+
 config INPUT_WISTRON_BTNS
 	tristate "x86 Wistron laptop button interface"
 	depends on X86_32
