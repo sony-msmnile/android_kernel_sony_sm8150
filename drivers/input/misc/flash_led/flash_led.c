@@ -67,7 +67,7 @@ static int flash_led_init(void)
 	return ret;
 }
 
-static void flash_led_exit(void)
+static void __exit flash_led_exit(void)
 {
 	led_classdev_unregister(&led_cdev);
 }
