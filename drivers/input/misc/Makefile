@@ -88,3 +88,4 @@ obj-$(CONFIG_INPUT_IDEAPAD_SLIDEBAR)	+= ideapad_slidebar.o
 obj-$(CONFIG_INPUT_FP_EGIS)		+= egistec/
 obj-$(CONFIG_INPUT_BU520X1NVX)		+= bu520x1nvx.o
 obj-$(CONFIG_SONY_CAMERA)               += sony_camera/
+obj-$(CONFIG_CAMERA_SYNC)               += camera_sync/
