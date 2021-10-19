@@ -382,6 +382,10 @@ config FLASH_LED
 	depends on SONY_CAMERA
         default n
 
+config INPUT_TCS3490
+        bool "AMS TCS3490 color sensor"
+        default n
+
 config INPUT_WISTRON_BTNS
 	tristate "x86 Wistron laptop button interface"
 	depends on X86_32
