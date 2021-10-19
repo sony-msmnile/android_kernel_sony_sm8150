@@ -377,6 +377,11 @@ config CAMERA_SYNC
 	depends on SONY_CAMERA
         default n
 
+config FLASH_LED
+        bool "Flash LED"
+	depends on SONY_CAMERA
+        default n
+
 config INPUT_WISTRON_BTNS
 	tristate "x86 Wistron laptop button interface"
 	depends on X86_32
