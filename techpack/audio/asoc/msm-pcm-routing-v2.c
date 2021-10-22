@@ -39,7 +39,6 @@
 #include <dsp/q6core.h>
 #include <dsp/q6common.h>
 #include <dsp/audio_cal_utils.h>
-#include <ahc/msm-ahc-config.h>
 
 #include "msm-pcm-routing-v2.h"
 #include "msm-pcm-routing-devdep.h"
@@ -239,13 +238,6 @@ static void msm_pcm_routing_cfg_pp(int port_id, int copp_idx, int topology,
 			pr_err("%s: topo_id 0x%x, port %d, copp %d, rc %d\n",
 				__func__, topology, port_id, copp_idx, rc);
 		break;
-	case ADM_CMD_COPP_OPENOPOLOGY_ID_SPEAKER_STEREO_AUDIO_COPP_SOMC_HP:
-		if (port_id == AHC_PORT_ID) {
-			pr_debug("%s: AHC supporting topology 0x%X\n",
-					__func__, topology);
-			msm_routing_ahc_set_copp_idx(copp_idx);
-		}
-		break;
 	default:
 		/* custom topology specific feature param handlers */
 		break;
@@ -276,13 +268,6 @@ static void msm_pcm_routing_deinit_pp(int port_id, int topology)
 	case ADM_CMD_COPP_OPEN_TOPOLOGY_ID_AUDIOSPHERE:
 		pr_debug("%s: TOPOLOGY_ID_AUDIOSPHERE\n", __func__);
 		msm_qti_pp_asphere_deinit(port_id);
-		break;
-	case ADM_CMD_COPP_OPENOPOLOGY_ID_SPEAKER_STEREO_AUDIO_COPP_SOMC_HP:
-		if (port_id == AHC_PORT_ID) {
-			pr_debug("%s: AHC supporting topology 0x%X\n",
-					__func__, topology);
-			msm_routing_ahc_set_copp_idx(-1);
-		}
 		break;
 	default:
 		/* custom topology specific feature deinit handlers */
@@ -25173,8 +25158,6 @@ static int msm_routing_probe(struct snd_soc_platform *platform)
 	snd_soc_add_platform_controls(platform,
 			use_ds1_or_ds2_controls,
 			ARRAY_SIZE(use_ds1_or_ds2_controls));
-
-	msm_routing_ahc_add_controls(platform);
 
 	snd_soc_add_platform_controls(platform,
 			hifi_filter_controls,

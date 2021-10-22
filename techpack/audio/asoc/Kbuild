@@ -85,15 +85,6 @@ UAPI_INC :=	-I$(AUDIO_ROOT)/include/$(UAPI_DIR)
 COMMON_DIR :=	include
 COMMON_INC :=	-I$(AUDIO_ROOT)/$(COMMON_DIR)
 
-############ SOMC ############
-SOMC_AUDIO_ROOT := $(ANDROID_BUILD_TOP)/vendor/semc/hardware/audio/kernel-modules
-SOMC_DIR :=	include
-SOMC_INC :=	-I$(SOMC_AUDIO_ROOT)/$(SOMC_DIR)
-
-########### SOMC UAPI ############
-SOMC_UAPI_DIR :=       uapi
-SOMC_UAPI_INC :=       -I$(SOMC_AUDIO_ROOT)/include/$(SOMC_UAPI_DIR)
-
 ############ ASoC Drivers ############
 
 
@@ -181,10 +172,7 @@ endif
 LINUX_INC +=	-Iinclude/linux
 
 INCS +=		$(COMMON_INC) \
-		$(UAPI_INC) \
-		$(SOMC_INC) \
-		$(SOMC_UAPI_INC)
-INCS += -include $(SOMC_AUDIO_ROOT)/config/somcaudioconf.h
+		$(UAPI_INC)
 
 EXTRA_CFLAGS += $(INCS)
 
