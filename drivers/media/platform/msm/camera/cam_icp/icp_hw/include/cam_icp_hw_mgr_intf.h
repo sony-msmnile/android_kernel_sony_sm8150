@@ -1,4 +1,4 @@
-/* Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -23,12 +23,12 @@
 
 #define CAM_ICP_A5_BW_BYTES_VOTE 40000000
 
-#define CAM_ICP_CTX_MAX          54
+#define CAM_ICP_CTX_MAX          36
 
 #define CPAS_IPE1_BIT            0x2000
 
 int cam_icp_hw_mgr_init(struct device_node *of_node,
-	uint64_t *hw_mgr_hdl, int *iommu_hdl);
+	uint64_t *hw_mgr_hdl);
 
 /**
  * struct cam_icp_cpas_vote

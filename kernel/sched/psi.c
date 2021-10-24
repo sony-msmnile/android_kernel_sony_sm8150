@@ -174,7 +174,7 @@ static u64 psi_period __read_mostly;
 
 /* System-level pressure and stall tracking */
 static DEFINE_PER_CPU(struct psi_group_cpu, system_group_pcpu);
-static struct psi_group psi_system = {
+struct psi_group psi_system = {
 	.pcpu = &system_group_pcpu,
 };
 
@@ -1190,6 +1190,9 @@ static ssize_t psi_write(struct file *file, const char __user *user_buf,
 
 	if (static_branch_likely(&psi_disabled))
 		return -EOPNOTSUPP;
+
+	if (!nbytes)
+		return -EINVAL;
 
 	buf_size = min(nbytes, (sizeof(buf) - 1));
 	if (copy_from_user(buf, user_buf, buf_size))

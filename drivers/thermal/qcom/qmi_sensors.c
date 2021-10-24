@@ -64,6 +64,7 @@ enum qmi_ts_sensor {
 	QMI_SYS_THERM1,
 	QMI_SYS_THERM2,
 	QMI_TS_TSENS_1,
+	QMI_TS_SDR054_THERM,
 	QMI_TS_MAX_NR
 };
 
@@ -121,6 +122,7 @@ static char sensor_clients[QMI_TS_MAX_NR][QMI_CLIENT_NAME_LENGTH] = {
 	{"sys_therm1"},
 	{"sys_therm2"},
 	{"modem_tsens1"},
+	{"sdr054_therm"},
 };
 
 static int32_t encode_qmi(int32_t val)

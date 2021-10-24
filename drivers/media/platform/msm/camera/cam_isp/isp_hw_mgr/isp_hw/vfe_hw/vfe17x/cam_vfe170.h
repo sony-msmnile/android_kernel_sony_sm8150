@@ -1,4 +1,4 @@
-/* Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -50,8 +50,6 @@ static struct cam_vfe_camif_ver2_reg vfe170_camif_reg = {
 	.raw_crop_width_cfg       = 0x00000CE4,
 	.raw_crop_height_cfg      = 0x00000CE8,
 	.reg_update_cmd           = 0x000004AC,
-	.vfe_diag_config          = 0x00000C48,
-	.vfe_diag_sensor_status   = 0x00000C4C,
 };
 
 static struct cam_vfe_camif_reg_data vfe_170_camif_reg_data = {
@@ -81,7 +79,6 @@ static struct cam_vfe_camif_reg_data vfe_170_camif_reg_data = {
 	.eof_irq_mask                    = 0x00000002,
 	.error_irq_mask0                 = 0x0003FC00,
 	.error_irq_mask1                 = 0x0FFF7E80,
-	.enable_diagnostic_hw            = 0x1,
 };
 
 struct cam_vfe_top_ver2_reg_offset_module_ctrl lens_170_reg = {
@@ -827,12 +824,6 @@ static struct cam_vfe_bus_ver2_hw_info vfe170_bus_hw_info = {
 			.max_width     = -1,
 			.max_height    = -1,
 		},
-	},
-	.reg_data = {
-		.ubwc_10bit_threshold_lossy_0 = 0,
-		.ubwc_10bit_threshold_lossy_1 = 0,
-		.ubwc_8bit_threshold_lossy_0 = 0,
-		.ubwc_8bit_threshold_lossy_1 = 0,
 	},
 };
 

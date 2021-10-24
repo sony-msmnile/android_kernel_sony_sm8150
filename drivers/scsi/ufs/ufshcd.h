@@ -259,6 +259,7 @@ struct ufs_desc_size {
 	int interc_desc;
 	int unit_desc;
 	int conf_desc;
+	int dev_health_desc;
 };
 
 /**
@@ -572,6 +573,9 @@ struct debugfs_files {
 	u32 err_inj_scenario_mask;
 	struct fault_attr fail_attr;
 #endif
+	struct dentry *fw_revision;
+	struct dentry *dump_dev_health_desc;
+	struct dentry *serial;
 };
 
 /* tag stats statistics types */
@@ -957,7 +961,8 @@ struct ufs_hba {
 	int req_abort_count;
 
 	/* Number of lanes available (1 or 2) for Rx/Tx */
-	u32 lanes_per_direction;
+	u32 lanes_tx;
+	u32 lanes_rx;
 
 	/* Gear limits */
 	u32 limit_tx_hs_gear;
@@ -1263,6 +1268,7 @@ out:
 }
 
 int ufshcd_read_device_desc(struct ufs_hba *hba, u8 *buf, u32 size);
+int ufshcd_read_device_health_desc(struct ufs_hba *hba, u8 *buf, u32 size);
 
 static inline bool ufshcd_is_hs_mode(struct ufs_pa_layer_attr *pwr_info)
 {
@@ -1288,6 +1294,11 @@ static inline void ufshcd_init_req_stats(struct ufs_hba *hba)
 #else
 static inline void ufshcd_init_req_stats(struct ufs_hba *hba) {}
 #endif
+
+#define ASCII_STD true
+#define UTF16_STD false
+int ufshcd_read_string_desc(struct ufs_hba *hba, int desc_index, u8 *buf,
+				u32 size, bool ascii);
 
 /* Expose Query-Request API */
 int ufshcd_query_flag(struct ufs_hba *hba, enum query_opcode opcode,

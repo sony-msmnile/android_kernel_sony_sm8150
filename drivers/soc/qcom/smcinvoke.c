@@ -1475,7 +1475,7 @@ static long process_accept_req(struct file *filp, unsigned int cmd,
 		ret = wait_event_interruptible(server_info->req_wait_q,
 				!hash_empty(server_info->reqs_table));
 		if (ret) {
-			pr_err("%s wait_event interrupted: ret = %d\n",
+			pr_debug("%s wait_event interrupted: ret = %d\n",
 							__func__, ret);
 			goto out;
 		}
